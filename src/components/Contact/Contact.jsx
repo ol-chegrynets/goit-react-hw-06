@@ -1,8 +1,10 @@
-import { number } from 'prop-types';
 import css from './Contact.module.css';
 import { ImPhone, ImUser } from 'react-icons/im';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 
-const Contact = ({ contact: { id, name, number }, deleteContacts }) => {
+const Contact = ({ contact: { id, name, number } }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <div className={css.textWrap}>
@@ -18,7 +20,7 @@ const Contact = ({ contact: { id, name, number }, deleteContacts }) => {
       <button
         type="button"
         className={css.deleteContactBtn}
-        onClick={() => deleteContacts(id)}
+        onClick={() => dispatch(deleteContact(id))}
       >
         Delete
       </button>
